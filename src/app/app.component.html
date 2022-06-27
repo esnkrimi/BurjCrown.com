@@ -1,0 +1,26 @@
+<bc-progress
+  *ngIf="globals.loading"
+  [progresstype]="'bar'"
+  [state]="'true'"></bc-progress>
+<app-header></app-header>
+
+<div class="d-flex row">
+  <div [class.col-md-2]="globals.devicIsPc"
+    [class.fixed]="(!globals.devicIsPc)&&(!this.globals.filterToggle)"
+    id="filters"
+    class="bg-white">
+    <div *ngIf="globals.filterIsChanged" class="text-muted cursor-pointer"
+      (click)="clearFilters()">
+      {{'home.clearFilters'|translate}}
+    </div>
+
+    <div *ngFor="let f of filter">
+      <app-filter [filterType]="f"></app-filter>
+    </div>
+  </div>
+  <div class="border" [class.col-md-12]="!globals.devicIsPc"
+    [class.col-md-10]="globals.devicIsPc">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<app-footer></app-footer>

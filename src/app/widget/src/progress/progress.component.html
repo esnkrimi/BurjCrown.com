@@ -1,0 +1,21 @@
+<div *ngIf="state" class="bg-black">
+  <p *ngIf="progresstype === 'bar'">
+    <mat-progress-bar
+      mode="indeterminate"
+      class="mat-progress-bar"
+    ></mat-progress-bar>
+  </p>
+  <p *ngIf="progresstype === 'circle'">
+    <circle-progress
+      [percent]="85"
+      [radius]="100"
+      [outerStrokeWidth]="16"
+      [innerStrokeWidth]="8"
+      [outerStrokeColor]="'#78C000'"
+      [innerStrokeColor]="'#C7E596'"
+      [animation]="true"
+      [animationDuration]="300"
+    >
+    </circle-progress>
+  </p>
+</div>

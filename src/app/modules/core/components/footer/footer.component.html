@@ -1,0 +1,33 @@
+<div class="bg-black w-100 text-center p-2">
+    <div class="lower-width inline-block">
+        <div class="row">
+            <div *ngFor="let i of index;let j as index" class="p-2 col-md-4">
+                <div class="large text-left fw-bold">
+                    <a class="large text-left fw-bold text-white
+                        text-decoration-none" [routerLink]="['/home','sort',
+                        'new' ]">
+                        {{'home.'+[dataSets[j]]+'Product'|translate}}
+                    </a>
+                </div>
+                <div>
+                    <div class="w-100 text-left">
+                        <div class="fw-bold border-bottom border-3 p-1 w-25
+                            d-inline-block"></div>
+                    </div>
+                </div>
+                <div *ngFor="let item of this['data'+dataSets[j]+'Product']|async">
+                    <app-thumbnail 
+                    [wishlist]="false"
+                    [type]="'small'" 
+                    [data]="item">
+                </app-thumbnail>
+                </div>
+            </div>
+            <div class="link-light text-center small w-100">
+                <span *ngIf="globals.devicIsPc">
+                  {{ "home.freeShip" | translate }}
+                </span>
+              </div>
+        </div>
+    </div>
+</div>

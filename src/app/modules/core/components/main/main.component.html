@@ -1,0 +1,37 @@
+<div class="d-flex">
+  <div [ngStyle]="{'flex-basis':DEVICE_TYPE_IS_PC==='true'?'30%':'100%'}">
+    <bc-select action="sort" [options]="options"
+      (sortChanged)="sortChanged($event)">
+    </bc-select>
+  </div>
+  <div style="flex-basis: 20%;" class="text-center p-2"
+    *ngIf="DEVICE_TYPE_IS_PC==='false'"
+    (click)="toggle()">
+    <mat-icon class="mat-icon">dashboard</mat-icon>
+  </div>
+</div>
+<div *ngIf="data$ | async as resultSet; else loading">
+  <div class="row">
+    <div
+      class="col-md-3"
+      *ngFor="let i of data$
+      | async">
+      <app-thumbnail
+        [wishlist]="true"
+        [data]="i"></app-thumbnail>
+    </div>
+  </div>
+
+  <div>
+    <pagination-controls
+      [autoHide]="true"
+      [directionLinks]="false"
+      class="my-pagination"
+      (pageChange)="paginationPageNumber= $event"></pagination-controls>
+  </div>
+</div>
+<ng-template #loading>
+  <bc-progress
+    [progresstype]="'bar'"
+    [state]="'true'"></bc-progress>
+</ng-template>

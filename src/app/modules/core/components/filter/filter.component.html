@@ -1,0 +1,49 @@
+<div>
+  <div class="fw-bold text-left pt-2 pb-2">
+    {{ 'home.'+[this.filterType]|translate}}
+  </div>
+  <div [ngSwitch]="filterType">
+    <div *ngSwitchCase="'filterColor'" class="row">
+      <div *ngFor="let d of data|async; let i; as: index" class="col-md-1
+        text-center">
+        <div
+          (click)="applyFilter(filterType, d[key])"
+          class="row cursor-pointer w-100 p-2"
+          *ngFor="let key of objectKeys(d)">
+          <div [ColorCircle]="d[key]" class="rounded-circle"></div>
+        </div>
+      </div>
+    </div>
+    <div *ngSwitchCase="'filterPrice'">
+      <div class="row">
+        <div class="w-100">
+          <ngx-slider class="price-slider" [(value)]="FilterPriceValue"
+            [options]="FilterPriceOptions"></ngx-slider>
+        </div>
+        <div>
+          <button mat-button color="primary" (click)="applyFilter(filterType,
+            FilterPriceValue)">Appy</button>
+        </div>
+      </div>
+    </div>
+    <div *ngSwitchDefault>
+      <div class="row">
+        <div *ngFor="let d of data|async">
+          <div
+            (click)="applyFilter(filterType, d[key])"
+            class="row cursor-pointer"
+            *ngFor="let key of objectKeys(d)">
+            <div style="flex-basis: 80%;" class="text-left small">
+              {{ d[key] }}
+            </div>
+            <div style="flex-basis: 20%;" class="text-right">
+              <mat-checkbox
+                [disabled]="true"
+                [(ngModel)]="d[key] === globals[filterType]"></mat-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

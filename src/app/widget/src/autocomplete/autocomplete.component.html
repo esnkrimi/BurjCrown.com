@@ -1,0 +1,12 @@
+<div class="ng-autocomplete w-100">
+  <ng-autocomplete
+    [data]="data"
+    (inputChanged)="onChangeSearch($event)"
+    [searchKeyword]="keyword"
+    [itemTemplate]="itemTemplate">
+  </ng-autocomplete>
+
+  <ng-template #itemTemplate let-item>
+    <a [routerLink]="['details','31']" [innerHTML]="item.fullName"></a>
+  </ng-template>
+</div>

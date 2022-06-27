@@ -1,0 +1,116 @@
+<div *ngIf="product[0];elseTemplate">
+  <div class="d-flex w-100 row">
+    <div class="col-md-6">
+      <bc-slideshow [imgobj]="images"></bc-slideshow>
+    </div>
+    <div class="col-md-6">
+      <div class="h3 text-left fw-bold text-capitalize">
+        {{ product[0].service_etitle }} - {{ product[0].sex }}
+      </div>
+      <div>
+        <mat-chip-list>
+          <mat-chip class="chip-highest-certificate p-2 rounded-circle">
+            {{ product[0].do_certificate }}%
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+      <div class="d-flex p-1 w-100">
+        <div class="text-left fw-bold h2 text-decoration-line-through
+          text-muted">
+          {{ product[0].do_price|priceLocaliztion |number:'0.0-0'}}
+        </div>
+        <div class="text-left fw-bold h2">
+          &nbsp;&nbsp;
+          {{(product[0].do_price -(product[0].do_price *
+          product[0].do_certificate) / 100)|priceLocaliztion|number:'0.0-0'}}
+        </div>
+        <div class="text-left h5">
+          {{ 'home.money' | translate }}
+        </div>
+        <div class="text-center"></div>
+      </div>
+      <div class="d-flex w-100">
+        <div
+          style="flex-basis: 38%;"
+          class="d-flex pr-2"
+          *ngIf="product[0].countEx> 0 || !globals.loginFlag"
+          >
+          <div
+            class="cursor-pointer p-3 fw-bold border"
+            style="flex-basis: 30%;"
+            (click)="count= count <2 ? 1 : count - 1">
+            -
+          </div>
+          <div class="cursor-pointer p-3 fw-bold border">
+            <span>{{ count }}</span>
+          </div>
+          <div
+            class="cursor-pointer p-3 fw-bold border"
+            style="flex-basis: 30%;"
+            (click)="count= count <product[0].countEx ? (count= count + 1) :
+            count">
+            +
+          </div>
+        </div>
+        <div *ngIf="product[0].countEx == 0" class="fw-bold p-3">
+          {{ 'home.NotExists' | translate }}
+        </div>
+        <div
+          (click)="addToBasket(product[0].do_id,count)"
+          *ngIf="product[0].countEx> 0"
+          data-toggle="modal"
+          data-target="#dialog"
+          [routerLink]="['basket']"
+          class="cursor-pointer fw-bold p-3 button text-center"
+          style="flex-basis: 60%;"
+          >
+          {{ 'home.AddToBag' | translate }}
+        </div>
+      </div>
+      <div *ngFor="let item of datas | keyvalue" class="row p-2
+        border-bottom-1">
+        <div style="flex-basis: 50%;" class="text-left text-muted">
+          {{ 'home.' + item.key | translate }}
+        </div>
+        <div *ngIf="item.key==='filterColor';else elseTmp"
+          style="flex-basis: 50%;" class="text-right">
+          <div class="w-25 small-circle rounded-circle"
+            [ColorCircle]="product[0][item.value]">
+          </div>
+        </div>
+        <ng-template #elseTmp>
+          <div style="flex-basis: 50%;" class="text-right">
+            {{ product[0][item.value] }}
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <article
+      [innerHTML]="product[0].do_attach"
+      class="paragraph pt-3 text-left text-muted"></article>
+  </div>
+  <div>
+    <bc-carousel
+      [products]="productsAlsoDiscovered"
+      [template]="forCarousel"></bc-carousel>
+  </div>
+</div>
+
+<ng-template #elseTemplate>
+  LOADING
+</ng-template>
+<ng-template
+  let-title="title"
+  let-src="src"
+  let-lastPrice="lastPrice"
+  let-price="price"
+  #forCarousel>
+  <div><img [src]="src" /></div>
+  <div>{{ title }}</div>
+  <div class="row d-flex">
+    <div style="flex-basis: 50%;">{{ price }}</div>
+    <div style="flex-basis: 50%;">{{ lastPrice }}</div>
+  </div>
+</ng-template>

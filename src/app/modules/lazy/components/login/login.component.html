@@ -1,0 +1,81 @@
+<div [class.text-left]="globals.language==='en'"
+  [class.text-right]="globals.language!=='en'" class="w-100">
+  <div [class.text-left]="globals.language==='en'"
+    [class.text-right]="globals.language!=='en'"
+    [class.w-25]="globals.devicIsPc"
+    [class.w-100]="!globals.devicIsPc"
+    class="pb-4 pt-2 text-left">
+    <div class="fw-bold">{{'home.signIn'|translate}}</div>
+    <div class="mt-3">
+      <div class="card-body pt-0">
+        <form [formGroup]="checkoutForm" (ngSubmit)="tryLogin()">
+          <div class="form-group"
+            [class.text-left]="globals.language==='en'"
+            [class.text-right]="globals.language!=='en'">
+            <label for="email">{{'home.email'|translate}}
+              /{{'home.mobile'|translate}}</label>
+            <input type="email" id="email" formControlName="email"
+              class="form-text form-control">
+          </div>
+          <div class="form-group"
+            [class.text-left]="globals.language==='en'"
+            [class.text-right]="globals.language!=='en'">
+            <label for="pass">{{'home.password'|translate}}</label>
+            <input type="password" id="pass" formControlName="pass"
+              class="form-text form-control"> </div>
+          <div class="text-left mt-4">
+            <button type="submit" class="bg-black text-white btn">
+              {{'home.signIn'|translate}} </button>
+          </div>
+        </form>
+        <div *ngIf="errorLogin" class="md-form mt-0 error text-danger"
+          [class.text-left]="globals.language==='en'"
+          [class.text-right]="globals.language!=='en'">
+          {{'home.loginFailed'|translate}}
+        </div>
+        <div *ngIf="loginInformationEmptyError" class="md-form mt-0
+          error
+          text-danger" [class.text-left]="globals.language==='en'"
+          [class.text-right]="globals.language!=='en'">
+          {{'home.enterUsernamePassword'|translate}}
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div [class.text-left]="globals.language==='en'"
+    [class.text-right]="globals.language!=='en'"
+    [class.w-25]="globals.devicIsPc"
+    [class.w-100]="!globals.devicIsPc"
+    class="pb-4 text-left w-100">
+    <div class="fw-bold w-100">{{'home.signUp'|translate}}</div>
+    <div class="mt-3 w-100">
+      <div class="card-body pt-0 w-100">
+        <form [formGroup]="checkoutFormSignUp" (ngSubmit)="userSignup()">
+          <div class="form-group"
+            [class.text-left]="globals.language==='en'"
+            [class.text-right]="globals.language!=='en'">
+            <label for="email">{{'home.email'|translate}}
+              /{{'home.mobile'|translate}}</label>
+            <input type="email" id="email" formControlName="email"
+              class="form-text form-control">
+          </div>
+          <div class="form-group"
+            [class.text-left]="globals.language==='en'"
+            [class.text-right]="globals.language!=='en'">
+            <label for="mobile">{{'home.mobile'|translate}}</label>
+            <input type="text" id="mobile" formControlName="mobile"
+              class="form-text form-control"> </div>
+          <div class="text-left mt-4">
+            <button type="submit" class="bg-black text-white btn">
+              {{'home.signIn'|translate}} </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div (click)="googleSignin()">
+  <button type="submit" class="bg-white text-orange btn fw-bold mb-2">
+    {{'home.socialGooleLogin'|translate}} </button>
+</div>

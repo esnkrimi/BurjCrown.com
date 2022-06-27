@@ -1,0 +1,23 @@
+<div [class.lower-width]="globals.devicIsPc" class="bg-clear">
+  <carousel
+    class="bg-clear"
+    *ngIf="products"
+    [arrows]="globals.devicIsPc"
+    [arrowsOutside]="true"
+    [height]="450"
+    [dots]="true"
+    [cellsToShow]="5"
+  >
+    <div [routerLink]="['/details',i.do_id]" *ngFor="let i of products" class="carousel-cell bg-clear">
+      <ng-container
+        [ngTemplateOutlet]="template"
+        [ngTemplateOutletContext]="{
+          src: 'http://www.burjcrown.com/drm/users/1/' + i.do_id + '/1.jpg?t=',
+          title: i.service,
+          price: i.do_price,
+          lastPrice: i.price_after
+        }"
+      ></ng-container>
+    </div>
+  </carousel>
+</div>

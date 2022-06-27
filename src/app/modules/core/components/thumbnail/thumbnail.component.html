@@ -1,0 +1,44 @@
+<div *ngIf="data" class="cursor-pointer
+  row">
+  <div [class.column]="type==='small'">
+    <div class="sliderImgWrapper bg-lazy">
+      <a class="text-black" [routerLink]="['/details',data.do_id]">
+        <img [alt]="data.Eservice" [title]="data.Eservice"
+          onError="src='http://burjcrown.com/drm/users/user.png'"
+          class="w-100 p-2" appLazyLoad
+          [src]="this.globals.UrlHome+'/drm/users/'+data.user_id+'/'+data.do_id+'/1.jpg?t='">
+      </a>
+      <div class="overlay cursor-pointer p-1" *ngIf="wishlist===true">
+        <mat-icon (click)="addToWishList(data.do_id)"
+          [class.text-gold]="data.wishlist_exists"
+          [class.big-heart]="showType ==='bigIcon'"
+          [class.small-heart]="showType!=='bigIcon'"
+          [class.opacity-100]="data.wishlist_exists">favorite</mat-icon>
+      </div>
+      <div *ngIf="type==='large'">
+        <div *ngIf="data.do_certificate>20" >
+          <mat-chip [appThumbnailSale]="data.do_certificate"
+            class="text-white p-2 rounded-circle">
+            {{data.do_certificate}}%
+          </mat-chip>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div [class.column-big]="type==='small'">
+    <div appThumbnailTitle class="text-black text-capitalize small"
+      [class.text-white]="type==='small'">
+      {{data.brands+" "+data.Eservice}} - {{'home.for'|translate}}
+      {{data.sex}}
+    </div>
+    <div class="d-flex p-1 w-100">
+      <div [class.text-white]="type==='small'"
+        [class.text-left]="type!=='1'"
+        class="small w-100"
+        appPrice>
+        {{data.price_after|priceLocaliztion|number: '1.0-0'}}
+        {{'home.money'|translate}}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,145 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css"
+@import '~@angular/material/theming'
+$light-color-for-text: #949494
+$dark-color-for-text: #202020
+$red: #c5260a
+$gold: #f56421
+$bg-color-home: rgb(238, 238, 238)
+$color-green: #2fcb8a
+@font-face
+  font-family: 'edwardian'
+  src: url(assets/font/edwardian.ttf) format('truetype')
+  font-weight: 900
+@function lighten($bgcolor)
+  @if (lightness($bgcolor)<50)
+    @return #fff
+  @else
+    @return #000
+@mixin text($color,$size,$font,$align,$weight)
+  color: $color
+  font-family: $font
+  font-size: $size
+  text-align: $align
+  font-weight: $weight
+@mixin box-text($bgcolor)
+  background-color: $bgcolor !important
+  color: lighten($bgcolor) !important
+::ng-deep .mat-checkbox-checked .mat-checkbox-background
+  background-color: $gold !important
+.lower-width
+  width: 90% !important
+.z-index1
+  position: relative
+  z-index: 1
+.text-button
+  font-size: 0.8em !important
+  cursor: pointer
+  color: $dark-color-for-text
+.text-button:hover
+  color: black
+  font-weight: 650
+a
+  text-decoration: none !important
+.price
+  color: $dark-color-for-text !important
+  font-weight: 555 !important
+  font-size: 1.0em !important
+.logo
+  @include text(white,xxx-large,'edwardian','center',bold)
+.logo:hover
+  @include text(white,xxx-large,'edwardian','center',bold)
+
+.input-border-bottom
+  border: none
+  border-bottom: 1px solid #1890ff
+  border-right: none
+  border-left: none
+  border-top: none
+  padding: 2%
+  background-color: white
+  outline: none !important
+[placeholder]:focus::-webkit-input-placeholder
+  transition: text-indent 0.6s 0.6s ease
+  text-indent: -100%
+  opacity: 0.6
+.title-font
+  font-size: 1.1em !important
+  text-align: left
+.pointer
+  cursor: pointer
+
+.autocomplete
+  border: none
+  border-bottom: 1px solid #1890ff
+  border-right: none
+  border-left: none
+  border-top: none
+  outline: none !important
+.gold-icon
+  color: $gold !important
+  font-size: 1.6em !important
+.gold-icon:hover
+  color: $gold !important
+  font-size: 1.6em !important
+  cursor: pointer
+.cancel-button
+  color: $light-color-for-text !important
+  cursor: pointer
+.fixed-top
+  position: fixed
+  left: 0
+  top: 0
+  z-index: 10
+.sliderImgWrapper
+  position: relative
+.overlay-bottom
+  position: absolute
+  bottom: 1%
+  right: 1px
+.overlay-right
+  position: absolute
+  top: 0%
+  right: 0px
+.overlay
+  position: absolute
+  top: 1%
+  left: 1%
+.overlayImage
+  position: absolute
+  top: -50px
+  left: -25px
+  width: 15px
+  height: 15px
+.text-gold
+  color: $gold !important
+*:focus, *:active:focus, *.active:focus
+  outline: none !important
+  outline-style: none !important
+.background-fix
+  background-image: url('http://burjcrown.com/img/back.jpg')
+  background-position: center
+  background-repeat: no-repeat
+  background-size: 100%
+  background-attachment: fixed
+.chip-lowest-certificate
+  @include box-text($red)
+.bg-light-dark
+  @include box-text($bg-color-home)
+.chip-highest-certificate
+  @include box-text($color-green)
+.button:hover
+  @include box-text(black)
+.button
+  @include box-text($red)
+.big-heart
+  font-size: 5.0em !important
+.small-heart
+  font-size: 2.7em !important
+.cursor-pointer
+  cursor: pointer
+.mat-standard-chip
+  min-height: 35px !important
+.text-muted
+  color: #8a8a8a !important
+.text-left
+  text-align: left !important

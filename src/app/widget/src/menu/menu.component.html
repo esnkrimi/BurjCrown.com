@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-black py-3 shadow-sm">
+  <a href="#" class="navbar-brand font-weight-bold d-block d-lg-none">MegaMenu</a>
+  <button
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbardataFromApi"
+    aria-controls="navbars"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    class="navbar-toggler">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div id="navbardataFromApi" class="collapse navbar-collapse">
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item" *ngFor="let i of menuItems">
+        <a
+          [routerLink]="[i.route]"
+          class="nav-link font-weight-bold text-uppercase text-white">{{ i.title
+          | translate }}</a>
+      </li>
+    </ul>
+  </div>
+</nav>

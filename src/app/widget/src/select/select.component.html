@@ -1,0 +1,5 @@
+<select class="select"
+    (change)="this[action]($event)">
+    <option>SORT</option>
+    <option *ngFor="let i of options" [value]="i[0]">{{i[1]}}</option>
+</select>
